@@ -10,7 +10,6 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   late TextEditingController _emailController;
-
   late TextEditingController _passwordController;
 
   @override
@@ -79,7 +78,7 @@ class _RegisterPageState extends State<RegisterPage> {
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Error: ${e.toString()}"),
-        duration: const Duration(seconds: 2),
+        duration: const Duration(seconds: 5),
       ));
       print(e);
     }

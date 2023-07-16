@@ -81,6 +81,10 @@ class _LoginPageState extends State<LoginPage> {
         password: _passwordController.text.trim(),
       );
     } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Error: ${e.toString()}"),
+        duration: const Duration(seconds: 5),
+      ));
       print(e);
     }
   }

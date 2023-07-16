@@ -19,17 +19,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Firebase',
-        debugShowCheckedModeBanner: false,
-        home: StreamBuilder(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return const HomePage();
-            } else {
-              return const LoginPage();
-            }
-          },
-        ));
+      title: 'Flutter Firebase',
+      debugShowCheckedModeBanner: false,
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return const HomePage();
+          } else {
+            return const LoginPage();
+          }
+        },
+      ),
+    );
   }
 }
