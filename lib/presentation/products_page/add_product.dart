@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -72,8 +74,22 @@ class _AddProductPageState extends State<AddProductPage> {
             SizedBox(
               width: double.infinity,
               child: OutlinedButton(
-                onPressed: () => addProduct(),
-                child: const Text('Register'),
+                onPressed: () {
+                  addProduct(
+                      name: _nameProductController.text,
+                      description: _descriptionProductController.text,
+                      price: _priceProductController.text);
+                },
+                child: const Text('Add product'),
+              ),
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                onPressed: () {
+                  addRandomProduct();
+                },
+                child: const Text('Add random product'),
               ),
             ),
           ],
@@ -82,12 +98,22 @@ class _AddProductPageState extends State<AddProductPage> {
     );
   }
 
-  addProduct() async {
+  void addRandomProduct() {
+    addProduct(
+        name: 'Product ${Random().nextInt(100)}',
+        description: 'Description ${Random().nextInt(100)}',
+        price: (Random().nextDouble() * 100).toStringAsFixed(2));
+  }
+
+  void addProduct(
+      {required String name,
+      required String description,
+      required String price}) async {
     final productData = Product(
       userId: FirebaseAuth.instance.currentUser!.uid,
-      name: _nameProductController.text,
-      description: _descriptionProductController.text,
-      price: double.parse(_priceProductController.text),
+      name: name,
+      description: description,
+      price: double.parse(price),
       imageUrl: _imageUrlProductController.text,
     );
     final result = await productCollectionRef.add(productData);
@@ -96,6 +122,12 @@ class _AddProductPageState extends State<AddProductPage> {
       _nameProductController.clear();
       _priceProductController.clear();
       _imageUrlProductController.clear();
+
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Product added'),
+        duration: Duration(seconds: 1),
+      ));
     }
   }
 }
