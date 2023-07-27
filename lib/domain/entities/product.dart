@@ -32,4 +32,20 @@ class Product {
       imageUrl: json['imageUrl'],
     );
   }
+
+  copyWith({
+    String? userId,
+    String? name,
+    String? description,
+    double? price,
+    String? imageUrl,
+  }) {
+    return Product(
+      userId: userId ?? this.userId,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      price: price ?? this.price,
+      imageUrl: imageUrl ?? this.imageUrl,
+    );
+  }
 }

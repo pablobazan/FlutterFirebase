@@ -47,36 +47,6 @@ class ProductListRealtime extends StatelessWidget {
               default:
                 return const SizedBox.shrink();
             }
-
-            // }
-            // if (snapshot.connectionState == ConnectionState.done) {
-            // } else if (snapshot.connectionState == ConnectionState.waiting) {
-            //   return const Center(
-            //     child: CircularProgressIndicator(),
-            //   );
-            // } else if (snapshot.connectionState == ConnectionState.active) {
-            //   final products = snapshot.data!.docs;
-            //   return ListView.builder(
-            //     itemCount: products.length,
-            //     itemBuilder: (context, index) {
-            //       return ListTile(
-            //         title: Text(products[index].data().name),
-            //         subtitle: Text(products[index].data().description),
-            //         trailing: Text('\$${products[index].data().price}'),
-            //         onLongPress: () {
-            //           deleteProduct(context, products[index].id);
-            //         },
-            //       );
-            //     },
-            //   );
-            // }
-
-            // if (snapshot.hasError) {
-            //   return const Center(
-            //     child: Text('Error'),
-            //   );
-            // }
-            // return const SizedBox.shrink();
           },
         ),
       ),
