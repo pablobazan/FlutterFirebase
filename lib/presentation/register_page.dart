@@ -80,7 +80,6 @@ class _RegisterPageState extends State<RegisterPage> {
         content: Text("Error: ${e.toString()}"),
         duration: const Duration(seconds: 5),
       ));
-      print(e);
     }
   }
 }

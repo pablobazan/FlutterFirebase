@@ -36,6 +36,13 @@ class ProductListRealtime extends StatelessWidget {
                       title: Text(products[index].data().name),
                       subtitle: Text(products[index].data().description),
                       trailing: Text('\$${products[index].data().price}'),
+                      leading: products[index].data().imageUrl != ""
+                          ? SizedBox(
+                              width: 60,
+                              height: 60,
+                              child: Image.network(
+                                  products[index].data().imageUrl))
+                          : null,
                       onLongPress: () {
                         deleteProduct(context, products[index].id);
                       },
