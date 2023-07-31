@@ -102,9 +102,11 @@ class _LoginPageState extends State<LoginPage> {
     final GoogleSignInAccount? googleUser =
         await GoogleSignIn(scopes: ["email"]).signIn();
 
+    if (googleUser == null) return;
+
     //Obtain the auth details from the request
     final GoogleSignInAuthentication googleAuth =
-        await googleUser!.authentication;
+        await googleUser.authentication;
 
     //Create a new credential
     final credential = GoogleAuthProvider.credential(
